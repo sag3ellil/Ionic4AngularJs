@@ -1,0 +1,203 @@
+<ion-header class="header">
+  <ion-toolbar color="warning">
+    
+    
+  <ion-row>
+   <ion-col align-self-start> 
+      <ion-title>SMTT-SL</ion-title>
+   </ion-col>
+   <ion-col align-self-start> 
+      
+   </ion-col>
+   <ion-col align-self-start> 
+      
+    </ion-col>
+   <ion-col align-self-start> 
+
+      <ion-icon  class="exit" name="exit" (click)="exit()"></ion-icon>
+      <label > {{nome}}</label>
+   </ion-col>
+    </ion-row>
+
+    <!-- <ion-searchbar></ion-searchbar>-->
+  </ion-toolbar>
+</ion-header>
+ 
+
+<ion-content>
+   
+  <form [formGroup]="slideOneForm"  #form="ngForm"    (ngSubmit)="AddSubmit(form)" method="post">
+   
+    <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+   
+    <h3 class="subtile1">Dados básicos</h3>
+       
+  
+    <ion-grid class="grid1">
+        
+        <ion-item>
+            <label>Codigo     : </label> 
+         
+           
+            <ion-input  formControlName="codigo"  type="number"  name="name" ></ion-input>
+       
+          
+        </ion-item>
+        <ion-item>
+            <label>Digito     : </label> 
+         
+           
+            <ion-input  formControlName="digito"  type="number"  name="name"  ></ion-input>
+       
+            
+        </ion-item>
+        <ion-item>
+            <label>Tipo     : </label> 
+         
+            <ion-select  formControlName="tipo"  placeholder="selecione um"      >
+              
+                             
+                
+                <ion-select-option  value= "Municipal" >Municipal</ion-select-option>  
+                <ion-select-option  value= "Estadual" >Estadual</ion-select-option>    
+                <ion-select-option  value= "Rodoviario" >Rodoviario</ion-select-option>      
+                <ion-select-option  value= "Estadual/Rodoviario" >Estadual/Rodoviario</ion-select-option>  
+                <ion-select-option  value= "Municipal/Rodoviario" >Municipal/Rodoviario</ion-select-option>    
+                <ion-select-option  value= "Municipal/Est/Rodov" >Municipal/Est/Rodov</ion-select-option>       
+                                                   
+              </ion-select> 
+        </ion-item>
+        <ion-item>
+            <label>Categoria     : </label> 
+         
+           
+            <ion-input  formControlName="Categoria"  type="text"  name="name"  ></ion-input>
+       
+           
+        </ion-item>
+        <ion-item>
+            <label>Valor     : </label> 
+         
+           
+            <ion-input  formControlName="Valor"  type="text"  name="name"  ></ion-input>
+       
+             <ion-item *ngIf="!slideOneForm.controls.Valor.valid  && (slideOneForm.controls.Valor.dirty || submitAttempt)">
+              <p>Please enter a valid Observacoe.</p>
+            </ion-item>
+        </ion-item>
+        <ion-item>
+            <label>Moeda     : </label> 
+         
+           
+           <ion-input formControlName="moeda"  type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <label>fator     : </label> 
+         
+           
+              
+            <ion-select  formControlName="fator"  placeholder="Select One"      >
+              
+                             
+                
+                <ion-select-option  value= "1" >1</ion-select-option>  
+                <ion-select-option  value= "2" >2</ion-select-option>    
+                <ion-select-option  value= "3" >3</ion-select-option>      
+                <ion-select-option  value= "4" >4</ion-select-option>  
+                <ion-select-option  value= "5" >5</ion-select-option>    
+                <ion-select-option  value= "10" >10</ion-select-option>       
+                                                   
+              </ion-select> 
+        </ion-item>
+        <ion-item>
+            <label>Veiculo     : </label> 
+         
+           
+            <ion-select  formControlName="veiculo"  placeholder="Select One"      >
+                <ion-select-option  value= "S" >SIM</ion-select-option>  
+                <ion-select-option  value= "N" >NAO</ion-select-option>  
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <label>Infrator     : </label> 
+         
+           
+            <ion-select  formControlName="infrator"  placeholder="Select One"      >
+              
+                             
+                
+                    <ion-select-option  value= "PRO" >PRO</ion-select-option>  
+                    <ion-select-option  value= "CON" >CON</ion-select-option>    
+                    <ion-select-option  value= "EXP" >EXP</ion-select-option>      
+                    <ion-select-option  value= "PED" >PED</ion-select-option>  
+                    <ion-select-option  value= "PFJ" >PFJ</ion-select-option>    
+                    <ion-select-option  value= "SER" >SER</ion-select-option>       
+                    <ion-select-option  value= "TRA" >TRA</ion-select-option>                                     
+                  </ion-select> 
+          
+        </ion-item>
+        <ion-item>
+            <label>Artigo     : </label> 
+         
+       <ion-input  formControlName="Artigo" type="text"></ion-input>
+
+        </ion-item>
+        <ion-item>
+            <label>Tipo veiculo     : </label> 
+         
+           
+            <ion-select  formControlName="Tipov"  placeholder="Select One"      >
+                <ion-select-option  value= "T" >T</ion-select-option>  
+                <ion-select-option  value= "V" >V</ion-select-option>    
+                <ion-select-option  value= "M" >M</ion-select-option>                                               
+              </ion-select> 
+        </ion-item>
+        <ion-item>
+            <label>Afericao     : </label> 
+         
+          
+            <ion-select  formControlName="afericao"  placeholder="Select One"      >
+                <ion-select-option  value= "N" >N</ion-select-option>  
+                <ion-select-option  value= "S" >S</ion-select-option>                                                
+              </ion-select> 
+        </ion-item>
+        <ion-item>
+            <label>Descricao     : </label> 
+         
+           
+            <ion-textarea  formControlName="descricao"  ></ion-textarea>
+           
+        </ion-item>
+        <ion-item>
+            <label>Medidas Administrativas     : </label> 
+         
+            <ion-textarea  formControlName="medidasA"  ></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <label>Observacoes do MBFT     : </label> 
+         
+            <ion-textarea  formControlName="MBFT"  ></ion-textarea>
+       
+           
+        </ion-item>
+
+
+        
+        <ion-item>
+            <label>Enquadramento inativo    : </label> 
+         
+            <ion-checkbox  formControlName="inativio"color="light" value="S"></ion-checkbox>
+       
+           
+        </ion-item>
+
+          
+          <ion-item>
+            <ion-button  class="b1" (click)="goBack()" color="light">Cancelar</ion-button>
+         <!--     <ion-button color="tertiary">Salvar</ion-button>-->
+            <ion-button class="b2" type="submit" color="tertiary"  color="tertiary">Salvar</ion-button>
+          </ion-item>
+    </ion-grid>
+    
+  </form>
+</ion-content>

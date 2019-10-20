@@ -1,0 +1,142 @@
+<ion-header class="header">
+  <ion-toolbar color="warning">
+    
+    
+  <ion-row>
+   <ion-col align-self-start> 
+      <ion-title>SMTT-SL</ion-title>
+   </ion-col>
+   <ion-col align-self-start> 
+      
+   </ion-col>
+   <ion-col align-self-start> 
+      
+    </ion-col>
+   <ion-col align-self-start> 
+
+      <ion-icon  class="exit" name="exit" (click)="exit()"></ion-icon>
+      <label > {{nome}}</label>
+   </ion-col>
+    </ion-row>
+
+    <!-- <ion-searchbar></ion-searchbar>-->
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<form [formGroup]="slideOneForm"  #form="ngForm" (ngSubmit)="AddSubmit(form)" method="post">
+    <h3 class="subtile1">Graphico Consulta</h3>
+      
+     <ion-grid class="grid1">
+                <ion-item>
+                  <label>Segmento</label>             
+                
+                  <ion-select  formControlName="segmento"  placeholder="Select One"  id="cla"  [(ngModel)]="sa"  >
+                    <ion-select-option  *ngFor="let sa of ss; let i =index " value= "{{sa.segmento}}" >{{sa.segmento}}</ion-select-option>                         
+                  </ion-select>  
+                </ion-item>
+
+                <ion-item>
+                    <label>Grupo</label> 
+                
+                  
+                    <ion-select formControlName="grupo"  placeholder="Select One" [(ngModel)]="groups">
+                      <ion-select-option value="{{groups}}" >{{groups}}</ion-select-option>
+                     
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <label>Usuario</label> 
+                  
+                    <ion-select  formControlName="usuario"  placeholder="Select One"  id="nome"   >
+                      <ion-select-option  *ngFor="let a of nome" value= "{{a}}" >{{a}}</ion-select-option>     
+                                   
+                    </ion-select>
+                  </ion-item>
+
+                 
+                    <ion-item>
+                        <label>Data Inicio</label> 
+                      
+                       
+                        <ion-datetime class="date1" formControlName="data1" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2019-12-09" autofocus="true" [(ngModel)]="dd1" (ionChange)="getD(dd1)"></ion-datetime>
+
+                      </ion-item>
+
+                      
+                      <ion-item>
+                          <label>Data fim</label> 
+                        
+                         
+                          <ion-datetime class="date2" formControlName="data2" [(ngModel)]="dd2" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2040-12-09" (ionChange)="getD2(dd2)"></ion-datetime>
+                          <ion-item *ngIf="!slideOneForm.controls.data2.valid  ">
+                            <p>Please enter a valid orgao.</p>
+                          </ion-item>
+                        </ion-item>
+                        <ion-item>
+                            <label>Hora Inicio</label> 
+                          
+                           
+                            <ion-datetime formControlName="horainicio" displayFormat="h:mm a"></ion-datetime>
+                            <ion-item *ngIf="!slideOneForm.controls.horainicio.valid  ">
+                              <p>Please enter a valid orgao.</p>
+                            </ion-item>
+                          </ion-item>
+                          <ion-item>
+                              <label>Hora Fim</label> 
+                            
+                             
+                              <ion-datetime formControlName="horafim" displayFormat="h:mm a" value="horafim"></ion-datetime>
+                              <ion-item *ngIf="!slideOneForm.controls.horafim.valid  ">
+                                <p>Please enter a valid orgao.</p>
+                              </ion-item>
+                            </ion-item>
+
+                            <ion-button  type="submit" color="primary">Pesquisar</ion-button>
+                          
+
+                            
+
+                            <ion-list-header color="light"></ion-list-header>
+                            <ion-card class="welcome-card">
+                              <ion-card-header>
+                                <ion-card-subtitle> Gráfico de atividades</ion-card-subtitle>
+                                <ion-card-title>SMTT-SL</ion-card-title>
+                              </ion-card-header>
+                              <ion-card-content>
+                                <canvas #barChart></canvas>
+                              </ion-card-content>
+                            </ion-card>
+                      
+                            <table >
+
+                                <tr  >
+                                    <th>
+                                    tipo
+                                    </th>
+                                   
+                                    <td>
+                                    total
+                                    </td>
+                                       
+                                    
+                                </tr>
+                              <tr  *ngFor=" let a of submit">
+                                  <th>
+                                  {{a.tipo}}
+                                  </th>
+                                 
+                                      <td>
+                                     {{a.total}}
+                                      </td>
+                                     
+                                  
+                              </tr>
+
+                           
+                        </table>
+                          </ion-grid>
+                       
+            
+          </form>
+</ion-content>

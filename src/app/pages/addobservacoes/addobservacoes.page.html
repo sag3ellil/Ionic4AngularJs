@@ -1,0 +1,59 @@
+<ion-header class="header">
+  <ion-toolbar color="warning">
+    
+    
+  <ion-row>
+   <ion-col align-self-start> 
+      <ion-title>SMTT-SL</ion-title>
+   </ion-col>
+   <ion-col align-self-start> 
+      
+   </ion-col>
+   <ion-col align-self-start> 
+      
+    </ion-col>
+   <ion-col align-self-start> 
+
+      <ion-icon  class="exit" name="exit" (click)="exit()"></ion-icon>
+      <label > {{nome}}</label>
+   </ion-col>
+    </ion-row>
+
+    <!-- <ion-searchbar></ion-searchbar>-->
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+   
+  <form [formGroup]="slideOneForm"  #form="ngForm"    (ngSubmit)="AddSubmit(form)" method="post">
+   
+    <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+   
+    <h3 class="subtile1">Novo observação</h3>
+       
+  
+    <ion-grid class="grid1">
+        
+        <ion-item>
+            <label>Observações     : </label> 
+         
+           
+            <ion-input  formControlName="obs"  type="text"  name="name"  [class.invalid]="!slideOneForm.controls.obs.valid && (slideOneForm.controls.obs.dirty || submitAttempt)"></ion-input>
+       
+       
+            <ion-item *ngIf="!slideOneForm.controls.obs.valid  && (slideOneForm.controls.obs.dirty || submitAttempt)">
+              <p>Please enter a valid Observaçõe.</p>
+            </ion-item>
+          </ion-item>
+
+
+          
+          <ion-item>
+            <ion-button  class="b1" (click)="goBack()" color="light">Cancelar</ion-button>
+         <!--     <ion-button color="tertiary">Salvar</ion-button>-->
+            <ion-button class="b2" type="submit" color="tertiary"  color="tertiary">Salvar</ion-button>
+          </ion-item>
+    </ion-grid>
+    
+  </form>
+</ion-content>

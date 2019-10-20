@@ -1,0 +1,161 @@
+<ion-header class="header">
+  <ion-toolbar color="warning">
+    
+    
+  <ion-row>
+   <ion-col align-self-start> 
+      <ion-title>SMTT-SL</ion-title>
+   </ion-col>
+   <ion-col align-self-start> 
+      
+   </ion-col>
+   <ion-col align-self-start> 
+      
+    </ion-col>
+   <ion-col align-self-start> 
+
+      <ion-icon  class="exit" name="exit" (click)="exit()"></ion-icon>
+      <label> {{nome1}}</label>
+   </ion-col>
+    </ion-row>
+
+    <!-- <ion-searchbar></ion-searchbar>-->
+  </ion-toolbar>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+crossorigin=""></script>
+</ion-header>
+
+<ion-content>
+
+    <form [formGroup]="slideOneForm"  #form="ngForm" (ngSubmit)="pesquisar(form)" method="post">
+        <h3 class="subtile1">Consultas Infrações</h3>
+          
+         <ion-grid class="grid1">
+                  <ion-item>
+                   <label>Segmento</label> 
+                  
+                   
+                    
+                        <ion-select  formControlName="segmento" (ionChange)="saveSegmento()"  placeholder="Selecione um"  id="cla"    >
+                          <ion-select-option  *ngFor="let sa of ss; let i =index " value= "{{sa.segmento}}" >{{sa.segmento}}</ion-select-option>                         
+                        </ion-select> 
+                </ion-item>
+               
+    
+                  <ion-item>
+                      <label>Grupo</label> 
+                    
+                     
+                          <ion-select  formControlName="grupo"  placeholder="Selecione um"  (ionChange)="saveGroup(groups)" id="cla"  [(ngModel)]="groups"  >
+                            <ion-select-option   value= "{{groups}}" >{{groups}}</ion-select-option>                         
+                          </ion-select> 
+                    </ion-item>
+    
+                    <ion-item>
+                        <label>Usuario</label> 
+                      
+                       
+                            
+                            <ion-select  formControlName="usuario"  placeholder="Selecione um"  (ionChange)="saveUsuario()" id="cla"   >
+                              <ion-select-option  *ngFor="let a of nome" value= "{{a}}" >{{a}}</ion-select-option>                         
+                            </ion-select> 
+                      </ion-item>
+    
+                    
+                        <ion-item>
+                            <label>Data Início</label> 
+                          
+                           
+                            <ion-datetime formControlName="data1" displayFormat="DD/MM/YYYY" min="1994-03-14" max="2019-12-09" [(ngModel)]="dd1" (ionChange)="getD(dd1)"></ion-datetime>
+    
+                          </ion-item>
+                          <ion-item>
+                              <label>Data fim</label> 
+                            
+                             
+                              <ion-datetime formControlName="data2"displayFormat="DD/MM/YYYY" min="1994-03-14" max="2040-12-09" [(ngModel)]="dd2" (ionChange)="getD2(dd2)"></ion-datetime>
+    
+                            </ion-item>
+                            <ion-item>
+                                <label>Hora Início</label> 
+                              
+                               
+                                <ion-datetime displayFormat="h:mm a"></ion-datetime>
+    
+                              </ion-item>
+                              <ion-item>
+                                  <label>Hora Fim</label> 
+                                
+                                 
+                                  <ion-datetime displayFormat="h:mm a"></ion-datetime>
+    
+                                </ion-item>
+    
+                                <ion-item>
+                                    <label>Infração</label> 
+                                  
+                                    <ion-input formControlName="infracao" type="text" value=""></ion-input>
+      
+                                  </ion-item>
+                                  <ion-item>
+                                      <label>Placa</label> 
+                                    
+                                      <ion-input formControlName="placa" type="text" value="" ></ion-input>
+                                    </ion-item>
+                                <ion-button type ="Submit"color="primary">Pesquisar</ion-button>
+                                <ion-button color="tertiary" (click)="mapa($event,form)">Mapa</ion-button>
+                                <table id="table" style="display:none;">
+                                  <tr >
+                                      <th>
+                                        Código
+                                      </th>
+                                      <th>
+                                        Infração
+                                      </th>
+                                      <th>
+                                        Total
+                                      </th>
+                                      <th>
+                                        Valor(R$)
+                                      </th>
+                                      <th>
+                                        Valor Total(R$)
+                                      </th>
+                                      <th>
+                                        Opções
+                                      </th>
+                                  </tr>
+                                  <tr id="{{sa.infracao}}" *ngFor="let sa of submit">
+                                
+                                      <td>
+                                        {{sa.infracao}}
+                                      </td>
+                                      <td>
+                                        {{sa.descricao_infracao}}
+                                      </td>
+                                      <td>
+                                        {{sa.tipo}}
+                                      </td>
+                                      <td>
+                                        {{sa.valorinfracao}}
+                                      </td>
+                                      <td>
+                                        {{sa.valor_infracao}}
+                                      </td>
+                                      <td>
+                                        <ion-icon name="map" (onClick)="gotomap(sa.infracao)">Por dia</ion-icon>
+                                      </td>
+                                  </tr>
+                                
+                                </table>
+                                 <div style="left: 10cm;" id="mapid"  ></div>
+                              </ion-grid>
+                             
+                 </form>
+</ion-content>

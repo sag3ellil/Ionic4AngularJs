@@ -1,0 +1,101 @@
+<ion-split-pane class="split"      when="xl">
+  <ion-menu contentId="content">
+ 
+    <ion-header>
+      <ion-toolbar color="warning">
+        <ion-title>Opções de Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+ 
+    <ion-content>
+      <ion-list>
+     
+       
+        <ion-row text-center>
+          <ion-col><img src="/assets/imgs/smttsl/logo.png"  width="200px" height="200px" (click)="goMenu()"></ion-col>
+      </ion-row>
+     <div *ngFor="let m1 of module1"> 
+     <h3>{{m1.title}}</h3>
+     </div>
+      <ion-menu-toggle auto-hide="false" *ngFor="let p1 of pages1"> 
+        <ion-item [routerLink]="p1.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(p1.url)">
+          <ion-icon name="{{ p1.icon }}"></ion-icon>
+          <ion-label>
+            {{ p1.title }}
+          </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+    
+      <div *ngFor="let m1 of module2"> 
+          <h3>{{m1.title}}</h3>
+          </div>
+ 
+       
+         
+           
+              <ion-menu-toggle auto-hide="false" *ngFor="let p2 of pages2"> 
+                  <ion-item [routerLink]="p2.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(p2.url)">
+                    <ion-icon name="{{ p2.icon }}"></ion-icon>
+                    <ion-label>
+                      {{ p2.title }}
+                    </ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+          
+                <div *ngFor="let m1 of module3"> 
+                    <h3>{{m1.title}}</h3>
+                    </div>
+           
+                 
+                   
+                     
+                        <ion-menu-toggle auto-hide="false" *ngFor="let p2 of pages3"> 
+                            <ion-item [routerLink]="p2.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(p2.url)">
+                              <ion-icon name="{{ p2.icon }}"></ion-icon>
+                              <ion-label>
+                                {{ p2.title }}
+                              </ion-label>
+                            </ion-item>
+                          </ion-menu-toggle>
+                
+                <div *ngFor="let m1 of module4"> 
+                    <h3>{{m1.title}}</h3>
+                    </div>
+            
+                  
+                    
+                      
+            <ion-menu-toggle auto-hide="false" *ngFor="let p2 of pages4"> 
+                <ion-item [routerLink]="p2.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(p2.url)">
+                  <ion-icon name="{{ p2.icon }}"></ion-icon>
+                  <ion-label>
+                    {{ p2.title }}
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+
+              <div *ngFor="let m1 of module5"> 
+                  <h3>{{m1.title}}</h3>
+              </div>
+         
+               
+                 
+                   
+              <ion-menu-toggle auto-hide="false" *ngFor="let p2 of pages5"> 
+                  <ion-item [routerLink]="p2.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(p2.url)">
+                    <ion-icon name="{{ p2.icon }}"></ion-icon>
+                    <ion-label>
+                      {{ p2.title }}
+                    </ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+ 
+        </ion-list>
+    </ion-content>
+ 
+  </ion-menu>
+ 
+  <ion-router-outlet id="content" main></ion-router-outlet>
+ 
+</ion-split-pane>

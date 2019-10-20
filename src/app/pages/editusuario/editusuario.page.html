@@ -1,0 +1,282 @@
+<ion-header class="header">
+  <ion-toolbar color="warning">
+    
+    
+  <ion-row>
+   <ion-col align-self-start> 
+      <ion-title>SMTT-SL</ion-title>
+   </ion-col>
+   <ion-col align-self-start> 
+      
+   </ion-col>
+   <ion-col align-self-start> 
+      
+    </ion-col>
+   <ion-col align-self-start> 
+
+      <ion-icon  class="exit" name="exit" (click)="exit()"></ion-icon>
+      <label > {{nome}}</label>
+   </ion-col>
+    </ion-row>
+
+    <!-- <ion-searchbar></ion-searchbar>-->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   
+  <form  *ngFor="let ed of EditUs" [formGroup]="slideOneForm"  #form="ngForm"    (ngSubmit)="AddSubmit(form)" method="post">
+   
+    <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+   
+    <h3 class="subtile1">Dados básicos</h3>
+       
+ <!-- <ion-item *ngFor="let ed of EditUs" >-->
+    <ion-grid class="grid1">
+        
+        <ion-item>
+            <label>Nome     : </label> 
+         
+           
+            <input  formControlName="nome" [(ngModel)]="name" type="text" placeholder="nome" name="name" value="{{ed.nome}}"  [class.invalid]="!slideOneForm.controls.nome.valid && (slideOneForm.controls.nome.dirty || submitAttempt)"/>
+       
+       
+            <ion-item *ngIf="!slideOneForm.controls.nome.valid  && (slideOneForm.controls.nome.dirty || submitAttempt)">
+              <p>Please enter a valid name.</p>
+            </ion-item>
+          </ion-item>
+       
+  
+       <ion-item>
+            <label>Nome de Guerra    : </label>
+        
+              <input   formControlName="nomeGuerra" [(ngModel)]="nguerra" type="text" placeholder="nome de geurra" value="{{ed.guerra}}"/>
+              <ion-item *ngIf="!slideOneForm.controls.nomeGuerra.valid  && (slideOneForm.controls.nomeGuerra.dirty || submitAttempt)">
+                <p>Please enter a valid Nome de Guerra.</p>
+              </ion-item>
+          </ion-item>
+
+         
+  
+          <ion-item>
+              <label>CPF      :   </label>
+            
+                <input  formControlName="cpfCont" [class.invalid]="!slideOneForm.controls.cpfCont.valid && (slideOneForm.controls.cpfCont.dirty || submitAttempt)" [(ngModel)]="cpf"  type="text"  value="{{ed.cpf}}" (ionInput)="getCPFVal($event);" placeholder="000.000.000-00"  required />
+                <ion-item *ngIf="!slideOneForm.controls.cpfCont.valid  && (slideOneForm.controls.cpfCont.dirty || submitAttempt)">
+                  <p>Please enter a valid CPF.</p>
+                </ion-item>
+              </ion-item>
+              
+          
+        
+          <ion-item>
+             <ion-label>Matrícula     :</ion-label> 
+          
+              <input formControlName="matricula" [(ngModel)]="matricula" type="text" placeholder="matricula" value="{{ed.matricula}}" />
+              <ion-item *ngIf="!slideOneForm.controls.matricula.valid  && (slideOneForm.controls.matricula.dirty || submitAttempt)">
+                <p>Please enter a valid Matricula.</p>
+              </ion-item>
+
+          </ion-item>
+
+         
+
+          <ion-item>
+            
+          <ion-label>Órgão      :</ion-label> 
+   
+          <input formControlName="orgao" [(ngModel)]="orgao" type="text" placeholder="orgao" value="{{ed.orgao}}" />
+              <ion-item *ngIf="!slideOneForm.controls.orgao.valid  && (slideOneForm.controls.orgao.dirty || submitAttempt)">
+                <p>Please enter a valid orgao.</p>
+              </ion-item>
+          </ion-item>
+         
+            <ion-item> 
+            
+              <ion-label> UF       :</ion-label> 
+                  <input formControlName="uf" type="text" value="GO"   disabled/>
+            </ion-item>
+           <ion-item>
+            
+                    <ion-label>Municipio       :   </ion-label>  
+                            <ion-select  formControlName="municipio" name="municipio" placeholder="Select One" value="{{ed.codigo_municipio}}" (ionChange)="getMunicipioVal($event)">
+                              <ion-select-option *ngFor="let seg of segs" value="{{seg.codigo}}">{{seg.nome}}</ion-select-option>                             
+                    </ion-select>
+          </ion-item>
+       
+      </ion-grid> 
+      
+      <h3 class="subtitle2">Autenticação </h3>
+      <ion-grid class="grid2">
+      
+            <ion-item>
+               <label>Login     :  </label> 
+            
+                <input formControlName="login" [(ngModel)]="login" type="text" placeholder="nome" name="login" value="{{ed.login}}" />
+                <ion-item *ngIf="!slideOneForm.controls.login.valid  && (slideOneForm.controls.login.dirty || submitAttempt)">
+                  <p>Please enter a valid orgao.</p>
+                </ion-item>
+             </ion-item>
+      
+            <ion-item>
+                <label>Senha     : </label>
+         
+                <input formControlName="Senha" [(ngModel)]="senha" type="password" name="senha" placeholder="senha" name="senha" />
+             </ion-item>
+      
+              <ion-item>
+                   <label>Confirma Senha    :  </label>
+              
+                    <input   formControlName="ConSenha" [(ngModel)]="confsenha" type="password" placeholder=" Confirma senha" />
+                    <ion-item *ngIf="!slideOneForm.controls.ConSenha.valid  && (slideOneForm.controls.ConSenha.dirty || submitAttempt)">
+                      <p>It 's not look like your Password.</p>
+                    </ion-item>
+              </ion-item>
+       
+      
+        
+                  <ion-item>
+                        <label>Segmento   :  </label>                  
+                        <ion-select  formControlName="Segmento"  placeholder="Select One"  id="cla" value="{{ed.segmento}}" [(ngModel)]="sa" (ionChange)="showSelectValue(form,$event)"  >
+                            <ion-select-option  *ngFor="let sa of ss; let i =index " value= "{{sa.segmento}}" >{{sa.segmento}}</ion-select-option>                         
+                          </ion-select>  
+                        
+                  </ion-item>
+                
+                <ion-item>
+              
+                  <label>Grupo     : </label>
+         
+                  <ion-select formControlName="Grupo" [(ngModel)]="group" placeholder="Select One" value="group" (click)="ConsultaGroups($event);">
+                    <ion-select-option *ngFor="let group of groups">{{group.grupo}}</ion-select-option>
+                   
+                  </ion-select>  
+                </ion-item>
+                 
+                <ion-item>
+                  <label>Perfil     :</label>
+            
+             
+                  <ion-select formControlName="Perfil" [(ngModel)]="Perf" placeholder="Select One" (click)="ConsultaPerfis($event);"  value="Perf">
+                    <ion-select-option *ngFor="let pe of Per" >{{pe.nome}}</ion-select-option>
+                   
+                  </ion-select>
+                </ion-item>
+          
+      
+        
+           
+          <ion-item> 
+                  <ion-label style="text-decoration-style: wavy" align-self-start>Status  :   </ion-label>
+                  <ion-row>
+                    
+  
+  
+  
+                    <ion-list   (ionChange)="getValueCheck($event)">
+                      <ion-radio-group   (ionChange)="radioGroupChange($event)" formControlName="status"  >
+                       
+                    
+                        <ion-item>
+                          <ion-label>Ativo</ion-label>
+                          <ion-radio id="Ativo" formControlName="activo"   value="Ativo"  checked='checkAtivo' ></ion-radio>
+                        </ion-item>
+  
+                        <ion-item>
+                          <ion-label>Inativo</ion-label>
+                          <ion-radio id="Inativo" formControlName="inactivo" [(ngModel)]="checkIntivo" value="Inativo"  ></ion-radio>
+                        </ion-item>
+                    
+                        
+                      </ion-radio-group>
+                    </ion-list>
+                  </ion-row>
+                  
+          </ion-item>
+              
+          <ion-item>
+                  <ion-checkbox formControlName="ConEnd" [(ngModel)]="ender" color="warning" (ionChange)="saveEndercoVal($event)" checked="true" align-self-start value="true"></ion-checkbox> 
+                
+                 
+                      <label>Consulta endereço de condutores</label>
+          </ion-item>
+                 
+
+            
+  
+          <ion-item>
+              <ion-button  class="b1" (click)="goBack()" color="light">Cancelar</ion-button>
+           <!--     <ion-button color="tertiary">Salvar</ion-button>-->
+              <ion-button class="b2" type="submit" color="tertiary"  color="tertiary">Salvar</ion-button>
+            </ion-item>
+        </ion-grid>
+      
+        
+        
+         
+         
+  
+  
+   <!--   </ion-item>
+      -->
+      
+      
+      </form>
+
+
+
+  <!--  <ion-slides #signupSlider pager>
+
+      <ion-slide>
+
+       
+
+        <ion-list lines="none">
+
+            <form [formGroup]="slideOneForm">
+
+               
+
+                <ion-item>
+                    <ion-label position="floating">Age</ion-label>
+                    <ion-input formControlName="age" type="number" ></ion-input>
+                </ion-item>
+
+                <ion-item *ngIf="!slideOneForm.controls.age">
+                    <p>Please enter a valid age.</p>
+                </ion-item>
+
+            </form>
+
+        </ion-list>
+        <ion-button expand="full" color="primary" (click)="save()">Create Account!</ion-button>
+      </ion-slide>
+
+      </ion-slides>
+
+      -->
+
+
+           
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

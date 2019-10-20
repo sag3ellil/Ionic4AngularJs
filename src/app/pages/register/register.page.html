@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-button color="light" (click)="dismissRegister()">Close</ion-button>-->
+    <ion-title>Criar Conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <form #form="ngForm" (ngSubmit)="Register(form)" method="post">
+ 
+    <ion-item>
+        <ion-label position="floating">Nome:</ion-label>
+        <ion-input required ngModel name="nome" id="fnome" #fnome ></ion-input>        
+    </ion-item>
+
+   
+    <ion-item>
+      <ion-label position="floating">Sobrenome:</ion-label>
+      <ion-input required ngModel name="sobrenome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input type="email" required ngModel name="email"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Senha:</ion-label>
+      <ion-input type="password" required ngModel name="password"></ion-input>
+    </ion-item>
+  
+    <ion-button type="submit" expand="full" color="danger">Solicitar Cadastro</ion-button>
+  </form>  
+  <ion-button expand="full" color="primary" [routerLink]="['/login']">Login</ion-button>
+
+</ion-content>  
+

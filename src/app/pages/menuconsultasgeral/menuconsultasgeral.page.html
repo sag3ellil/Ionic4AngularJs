@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+     <ion-title>{{AppName}} </ion-title>
+    <!-- <ion-searchbar></ion-searchbar>-->
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-header>
+    <ion-list-header color="dark">Menu Principal</ion-list-header>
+</ion-header>
+
+<ion-content fullscreen>
+  <!--
+  Página Inicial 
+  <ion-button expand="block" routerLink="/menu/first/tabs/main/details" routerDirection="forward">
+    Mostra outra página (Módulo)
+  </ion-button>
+  
+  <ion-header translucent>      
+      <ion-toolbar>
+        <ion-searchbar></ion-searchbar>
+      </ion-toolbar>
+    </ion-header>
+-->
+
+
+  <ion-list>
+      <ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+          <ion-avatar slot="start">
+          <!--  <img src="./assets/imgs/{{item.nome_imagem}}.png" style="height:80px;width:80px; align-content: center;">
+          -->   <ion-thumbnail >
+         
+            <img src="./{{item.icon}}" width="100px" height="100px">
+        
+            </ion-thumbnail>
+       
+      
+       
+        </ion-avatar>   
+           <ion-label>
+            <!--<h1>{{item.name}}</h1>-->
+            <ion-label text-justify text-wrap>{{item.name}}</ion-label>            
+          </ion-label>
+      </ion-item>  
+   </ion-list>  
+      
+  
+   <!-- fab placed to the top end 
+   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+-->
+</ion-content>
+

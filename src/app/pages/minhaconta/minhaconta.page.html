@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Minha Conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+  <!--
+  <ion-button expand="block" routerLink="/menu/second/details" routerDirection="forward">
+      Mostrar Detalhes 
+    </ion-button>
+  -->
+
+  <form #form="ngForm" (ngSubmit)="RegisterUpdate(form)" method="post">
+  
+  <ion-item>
+      <ion-avatar slot="start">
+         <img src="{{SrcPhotoAvatar}}">
+      </ion-avatar>
+      <ion-label>{{DataSet[0].Nome}} {{DataSet[0].SobreNome}} </ion-label>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">Nome:</ion-label>
+        <ion-input type="text"   value="{{DataSet[0].Nome}}"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Sobrenome:</ion-label>
+      <ion-input type="text"    value="{{DataSet[0].SobreNome}}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input type="email"   value="{{DataSet[0].Email}}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Telefone:</ion-label>
+      <ion-input type="tel"   value="{{DataSet[0].Telefone}}" ></ion-input>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="floating">Celular:</ion-label>
+      <ion-input type="tel"  value="{{DataSet[0].Celular}}"></ion-input>
+    </ion-item> 
+
+    <ion-item class="ion-avatar" >
+      <ion-label position="floating">Senha:</ion-label>
+      <ion-input type="password"  value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Repita a Senha:</ion-label>
+      <ion-input type="password"  value=""></ion-input>
+    </ion-item>
+  
+    <ion-button type="submit" expand="full" color="danger">Atualizar</ion-button>
+  </form>
+
+
+
+
+</ion-content>

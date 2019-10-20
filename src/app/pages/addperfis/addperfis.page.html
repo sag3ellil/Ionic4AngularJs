@@ -1,0 +1,59 @@
+<ion-header class="header">
+  <ion-toolbar color="warning">
+    
+    
+  <ion-row>
+   <ion-col align-self-start> 
+      <ion-title>SMTT-SL</ion-title>
+   </ion-col>
+   <ion-col align-self-start> 
+      
+   </ion-col>
+   <ion-col align-self-start> 
+      
+    </ion-col>
+   <ion-col align-self-start> 
+
+      <ion-icon  class="exit" name="exit" (click)="exit()"></ion-icon>
+      <label > {{nome}}</label>
+   </ion-col>
+    </ion-row>
+
+    <!-- <ion-searchbar></ion-searchbar>-->
+  </ion-toolbar>
+</ion-header>
+ 
+  
+  <ion-content>
+     
+    <form [formGroup]="slideOneForm"  #form="ngForm"    (ngSubmit)="AddSubmit(form)" method="post">
+     
+      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+     
+      <h3 class="subtile1">Novos Perfis</h3>
+         
+    
+      <ion-grid class="perfis">
+          
+          <ion-item>
+              <label>perfis     : </label> 
+           
+             
+              <ion-input  formControlName="perfis"  type="text"  name="name" ></ion-input>
+         
+              <ion-item *ngIf="!slideOneForm.controls.perfis.valid  && (slideOneForm.controls.perfis.dirty || submitAttempt)">
+                <p>Please enter a valid Observacoe.</p>
+              </ion-item>
+          </ion-item>
+  
+  
+            
+            <ion-item>
+              <ion-button  class="b1" (click)="goBack()" color="light">Cancelar</ion-button>
+           <!--     <ion-button color="tertiary">Salvar</ion-button>-->
+              <ion-button class="b2" type="submit" color="tertiary"  color="tertiary">Salvar</ion-button>
+            </ion-item>
+      </ion-grid>
+      
+    </form>
+  </ion-content>

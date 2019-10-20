@@ -1,0 +1,116 @@
+<ion-header class="header">
+  <ion-toolbar color="warning">
+    
+    
+  <ion-row>
+   <ion-col align-self-start> 
+      <ion-title>SMTT-SL</ion-title>
+   </ion-col>
+   <ion-col align-self-start> 
+      
+   </ion-col>
+   <ion-col align-self-start> 
+      
+    </ion-col>
+   <ion-col align-self-start> 
+
+      <ion-icon  class="exit" name="exit" (click)="exit()"></ion-icon>
+      <label > {{nome}}</label>
+   </ion-col>
+    </ion-row>
+
+    <!-- <ion-searchbar></ion-searchbar>-->
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+  <!--
+  <ion-button expand="block" routerLink="/menu/second/details" routerDirection="forward">
+      Mostrar Detalhes 
+    </ion-button>
+  -->
+  
+  <!--
+    Use a documentação para construir os componestes
+    https://ionicframework.com/docs/api/action-sheet
+  -->
+
+  <form #form="ngForm" (ngSubmit)="PesquisarGeo(form,$event)" method="post">
+    <ion-list>      
+      <ion-item>
+        <ion-label position="floating">Seguimento:</ion-label>
+        <ion-select  placeholder="Selecione o Seguimento..." (ionChange)="PopulaGrupos(form,$event);">
+          <ion-select-option *ngFor="let seg of segs">{{seg.segmento}}</ion-select-option>
+        </ion-select>
+      </ion-item> 
+    </ion-list>
+
+
+   <!-- <ion-list>      
+      <ion-item>
+        <ion-label position="floating">Grupo:</ion-label>
+        <ion-select  placeholder="Selecione o Grupo..." (ionChange)="PopulaGrupos(form,$event);">
+          <ion-select-option *ngFor="let grp of groups">{{grp.nome}}</ion-select-option>
+        </ion-select>
+      </ion-item> 
+    </ion-list>
+
+    <ion-list>      
+      <ion-item>
+        <ion-label position="floating">Usuário:</ion-label>
+        <ion-select  placeholder="Selecione o Usuário..." (ionChange)="PopulaUsuarios(form,$event);">
+          <ion-select-option *ngFor="let user of users">{{user.usuario}}</ion-select-option>
+        </ion-select>
+      </ion-item> 
+    </ion-list>
+  -->
+    <!--
+
+     <ion-item>
+        <ion-label position="floating">Nome:</ion-label>
+        <ion-input ngModel type="text" id="fNome"  placeholder="Informe seu nome" name="Nome" 
+            required   value="{{ Nome  }}">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Sobre Nome</ion-label>
+        <ion-input ngModel  type="text"  id="fSobreNome"   placeholder="Informe seu Sobre Nome"             name="SobreNome" 
+            required value="{{ SobreNome  }}">
+        </ion-input>        
+      </ion-item>
+    
+      <ion-item>
+        <ion-label position="floating">Email:</ion-label>              
+        <ion-input ngModel type="email"  name="Email" required  value="{{ Email }}"  ></ion-input>        
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Telefone:</ion-label>   
+        <ion-input ngModel type="tel"  name="Telefone" value="{{ Telefone }}"></ion-input>           
+      </ion-item> 
+  
+      <ion-item>
+        <ion-label position="floating">Celular:</ion-label>                    
+        <ion-input ngModel type="tel"  name="Celular" value="{{ Celular }}"></ion-input> 
+      </ion-item> 
+  
+      <ion-item>
+        <ion-label position="floating">Senha:</ion-label>              
+        <ion-input ngModel type="password"  name="Password" required></ion-input>  
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Repita a Senha:</ion-label>        
+        <ion-input ngModel type="password"  name="RePassword" required></ion-input>  
+      </ion-item>
+      
+      <ion-button type="submit" expand="full" color="primary">Atualizar</ion-button>
+  -->   
+    
+  </form>
+
+ 
+
+
+</ion-content>
